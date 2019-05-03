@@ -10,21 +10,21 @@ char **reconstruct_trip(Ticket **tickets, int length)
   char **route = malloc(length * sizeof(char *));
   for (int i = 0; i < length; i++)
   {
-    route[i] = tickets[i]->destination;
+    // we need to find the first place, the source place. so look for NONE
+
+    if (strcmp((*tickets[i]).source, "NONE") == 0)
+    {
+      printf("let's put that into the route[0]\n");
+      route[i] = (*tickets[i]).source;
+    }
+    else
+    {
+      printf("chicken dance.\n");
+      route[i] = (*tickets[i]).destination;
+    }
   }
-  printf("what does tickets look like? : %s", route);
-  //   # If we've used up all the flights, we're done
-  //   if not flights:
-  //       return current_itinerary
-  //   last_stop = current_itinerary[-1]
-  //   for i, (origin, destination) in flights:
-  //       # Make a copy of flights without the current one to mark it as used
-  //       flights_minus_current = flights[:i] + flights[i + 1:]
-  //       current_itinerary.append(destination)
-  //       if origin == last_stop:
-  //           return get_itinerary(flights_minus_current, current_itinerary)
-  //       current_itinerary.pop()
-  //   return None
+  printf("what does tickets look like? : %s \n", *route);
+
   return route;
 }
 
