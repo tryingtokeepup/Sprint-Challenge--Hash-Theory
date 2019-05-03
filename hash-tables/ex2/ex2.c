@@ -15,11 +15,11 @@ char **reconstruct_trip(Ticket **tickets, int length)
     if (strcmp((*tickets[i]).source, "NONE") == 0)
     {
       printf("let's put that into the route[0]\n");
-      route[i] = (*tickets[i]).source;
+      route[i] = (*tickets[i]).destination;
     }
-    else
+    else if (strcmp((*tickets[i]).source, route[i - 1]) == 0)
     {
-      printf("chicken dance.\n");
+      printf("we found a ticket that matches the source.\n");
       route[i] = (*tickets[i]).destination;
     }
   }
