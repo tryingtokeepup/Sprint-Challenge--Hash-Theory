@@ -29,6 +29,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 
       printf("index2 = %d\n", answer->index_2);
 
+      destroy_hash_table(ht); //no mem leaks
       return answer;
     }
     else
@@ -36,7 +37,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
       hash_table_insert(ht, weights[i], i);
     }
   }
-
+  destroy_hash_table(ht); //no mem leaks
   return answer;
 }
 
