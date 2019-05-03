@@ -8,7 +8,11 @@ char **reconstruct_trip(Ticket **tickets, int length)
 {
   HashTable *ht = create_hash_table(16);
   char **route = malloc(length * sizeof(char *));
-
+  for (int i = 0; i < length; i++)
+  {
+    route[i] = tickets[i]->destination;
+  }
+  printf("what does tickets look like? : %s", route);
   //   # If we've used up all the flights, we're done
   //   if not flights:
   //       return current_itinerary
@@ -21,6 +25,7 @@ char **reconstruct_trip(Ticket **tickets, int length)
   //           return get_itinerary(flights_minus_current, current_itinerary)
   //       current_itinerary.pop()
   //   return None
+  return route;
 }
 
 void print_route(char **route, int length)
