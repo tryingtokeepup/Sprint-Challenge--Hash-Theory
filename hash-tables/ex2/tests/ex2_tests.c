@@ -83,7 +83,6 @@ char *test_long_case()
   tickets[9] = ticket_10;
 
   char *expected[] = {"LAX", "SFO", "BHM", "FLG", "XNA", "CID", "SLC", "PIT", "ORD", "NONE"};
-
   mu_assert(check_string_arrays(reconstruct_trip(tickets, 10), expected, 10, 10), "Your function did not return the expected output");
 
   return NULL;
@@ -94,7 +93,7 @@ char *all_tests()
   mu_suite_start();
 
   mu_run_test(test_short_case);
-  //mu_run_test(test_long_case);
+  mu_run_test(test_long_case);
 
   return NULL;
 }
