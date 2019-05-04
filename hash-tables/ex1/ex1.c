@@ -25,8 +25,8 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 
       answer->index_1 = i;
       printf("index1 = %d\n", i);
-      answer->index_2 = hash_table_retrieve(ht, remainder);
-
+      answer->index_2 = hash_return;
+      // my argument is that they both work
       printf("index2 = %d\n", answer->index_2);
 
       destroy_hash_table(ht); //no mem leaks
@@ -45,7 +45,7 @@ void print_answer(Answer *answer)
 {
   if (answer != NULL)
   {
-    printf("%d %d\n", answer->index_1, answer->index_2);
+    printf("{%d, %d}\n", answer->index_1, answer->index_2);
   }
   else
   {
@@ -65,7 +65,7 @@ int main(void)
   // TEST 2
   int weights_2[] = {4, 4};
   Answer *answer_2 = get_indices_of_item_weights(weights_2, 2, 8);
-  print_answer(answer_2); // {1, 0}
+  print_answer(answer_2); // {1, 0}, {1, 1} edge case, both equal 8
 
   // TEST 3
   int weights_3[] = {4, 6, 10, 15, 16};

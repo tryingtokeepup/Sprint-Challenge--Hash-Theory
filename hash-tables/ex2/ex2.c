@@ -28,6 +28,7 @@ char **reconstruct_trip(Ticket **tickets, int length)
     //   route[i] = hash_table_retrieve(ht, (*tickets[i]).source);
     //   printf("route[%d] is: %s\n", i, route[i]);
     // }
+    // this is the only way i know to rebuild the table; wonder if there's another way
     route[i] = hash_table_retrieve(ht, current);
     current = route[i];
   }
