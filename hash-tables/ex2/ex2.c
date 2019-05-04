@@ -8,22 +8,28 @@ char **reconstruct_trip(Ticket **tickets, int length)
 {
   HashTable *ht = create_hash_table(16);
   char **route = malloc(length * sizeof(char *));
+  // we can build out the whole itenerary first, THEN pass the last one as the current!
+
+  for (int j = 0; j < length; j++)
+  {
+    //so, let's build out this stuff one by one, and go through all the tickets, and make a train out of them
+    hash_table_insert(ht, (*tickets[j]).source, (*tickets[j]).destination);
+    //printf("what does the ht look like? : %s \n", ht);
+  }
+  char *current = "NONE";
+
   for (int i = 0; i < length; i++)
   {
     // we need to find the first place, the source place. so look for NONE
 
-    if (strcmp((*tickets[i]).source, "NONE") == 0)
-    {
-      printf("let's put that into the route[0]\n");
-      route[i] = (*tickets[i]).destination;
-      printf("route[%d] is: %s\n", i, route[i]);
-    }
-    else if (strcmp((*tickets[i]).source, route[i - 1]) == 0)
-    {
-      printf("we found a ticket that matches the source.\n");
-      route[i] = (*tickets[i]).destination;
-      printf("route[%d] is: %s\n", i, route[i]);
-    }
+    // if (strcmp((*tickets[i]).source, "NONE") == 0)
+    // {
+    //   printf("let's put that into the route[0]\n");
+    //   route[i] = hash_table_retrieve(ht, (*tickets[i]).source);
+    //   printf("route[%d] is: %s\n", i, route[i]);
+    // }
+    route[i] = hash_table_retrieve(ht, current);
+    current = route[i];
   }
   printf("what does tickets look like? : %s \n", *route);
 
